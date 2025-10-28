@@ -1,0 +1,24 @@
+name: Sync Commits of Forked Repo to Personal Repo
+
+on:
+  push:
+    branches:
+      - wateralsie
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    if: github.repository == 'wateralsie/java-lotto-8'
+    steps:
+      - name: Bare Clone Forked Repo
+        run: |
+          git clone --bare https://github.com/${{ github.repository }}.git
+
+      - name: Mirror Push to Personal Repo
+        env:
+          PERSONAL_REPO: ${{ secrets.PERSONAL_REPO_URL }}
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        run: |
+          cd $(basename ${{ github.repository }}).git
+          git push --mirror https://${GITHUB_TOKEN}@${PERSONAL_REPO#https://}
