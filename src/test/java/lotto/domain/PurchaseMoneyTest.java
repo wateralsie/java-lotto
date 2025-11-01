@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class PurchaseMoneyTest {
     @ParameterizedTest
-    @ValueSource(ints = {500, 2400, 9999, -10000})
+    @ValueSource(ints = {500, 2400, 9999})
     void 구입금액이_1000으로_나누어떨어지지_않는다면_예외가_발생한다(int amount) {
         assertThatThrownBy(() -> new PurchaseMoney(amount))
                 .isInstanceOf(IllegalArgumentException.class)
