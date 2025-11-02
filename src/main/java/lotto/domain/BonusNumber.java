@@ -8,6 +8,10 @@ public class BonusNumber {
         this.number = number;
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     private void validate(int number) {
         validateInRange(number);
     }
