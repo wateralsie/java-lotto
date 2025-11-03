@@ -1,8 +1,11 @@
 package lotto.domain.model;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import lotto.constants.ErrorMessage;
+import lotto.constants.LottoConstant;
 
 public class WinningLottoNumbers {
     private final List<LottoNumber> winningNumbers;
@@ -36,7 +39,24 @@ public class WinningLottoNumbers {
     }
 
     private void validate(List<Integer> winningNumbers, int bonusNumber) {
+        validateNumbersCount(winningNumbers);
+        validateDuplicateNumbers(winningNumbers);
         validateNotDuplicatedWith(winningNumbers, bonusNumber);
+    }
+
+    private void validateNumbersCount(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != LottoConstant.LOTTO_NUMBERS_COUNT) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS_COUNT);
+        }
+    }
+
+    private void validateDuplicateNumbers(List<Integer> winningNumbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        for (Integer number : winningNumbers) {
+            if (!uniqueNumbers.add(number)) {
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBERS);
+            }
+        }
     }
 
     private void validateNotDuplicatedWith(List<Integer> winningNumbers, int number) {

@@ -62,7 +62,7 @@ public class LottoSessionController {
             return new WinningLottoNumbers(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return createWinningLottoNumbers(winningNumbers, getBonusNumberFromUser());
+            return createWinningLottoNumbers(getWinningNumbersFromUser(), getBonusNumberFromUser());
         }
     }
 
