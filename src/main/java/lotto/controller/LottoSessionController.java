@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.domain.LottoSession;
+import lotto.domain.BonusNumber;
 import lotto.domain.PurchaseMoney;
 import lotto.view.InputView;
 
@@ -13,18 +13,17 @@ public class LottoSessionController {
     }
 
     public void run() {
-        int amount = getPurchaseMoneyAmountFromUser();
+        PurchaseMoney money = getPurchaseMoneyFromUser();
         List<Integer> winningNumbers = getWinningNumbersFromUser();
-        int bonusNumber = getBonusNumberFromUser();
-
-        LottoSession lottoSession = new LottoSession(amount, winningNumbers, bonusNumber);
+        BonusNumber bonusNumber = getBonusNumberFromUser(winningNumbers);
     }
 
-    private int getPurchaseMoneyAmountFromUser() {
+    private PurchaseMoney getPurchaseMoneyFromUser() {
         try {
-            return inputView.readPurchaseMoneyAmount();
+            int amount = inputView.readPurchaseMoneyAmount();
+            return new PurchaseMoney(amount);
         } catch (IllegalArgumentException e) {
-            return getPurchaseMoneyAmountFromUser();
+            return getPurchaseMoneyFromUser();
         }
     }
 
@@ -36,11 +35,12 @@ public class LottoSessionController {
         }
     }
 
-    private int getBonusNumberFromUser() {
+    private BonusNumber getBonusNumberFromUser(List<Integer> winningNumbers) {
         try {
-            return inputView.readBonusNumber();
+            int bonusNumber = inputView.readBonusNumber();
+            return new BonusNumber(bonusNumber, winningNumbers);
         } catch (IllegalArgumentException e) {
-            return getBonusNumberFromUser();
+            return getBonusNumberFromUser(winningNumbers);
         }
     }
 }
