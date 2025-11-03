@@ -22,7 +22,7 @@ public class LottoGenerator {
     public List<Lotto> generateLottos() {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> numbers = generateLottoNumbers();
+            List<Integer> numbers = new ArrayList<>(generateLottoNumbers());
             Collections.sort(numbers);
             lottos.add(new Lotto(numbers));
         }
