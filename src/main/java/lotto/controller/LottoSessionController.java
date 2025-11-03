@@ -2,7 +2,10 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.LottoGenerator;
 import lotto.domain.PurchaseMoney;
+import lotto.domain.ResultFormatter;
 import lotto.view.InputView;
 
 public class LottoSessionController {
@@ -14,6 +17,14 @@ public class LottoSessionController {
 
     public void run() {
         PurchaseMoney money = getPurchaseMoneyFromUser();
+
+        LottoGenerator lottoGenerator = new LottoGenerator(money);
+        List<Lotto> lottos = lottoGenerator.generateLottos();
+        System.out.println();
+        System.out.printf("%d개를 구매했습니다.\n", lottos.size());
+        System.out.println(ResultFormatter.formatLottoInfo(lottos));
+        System.out.println();
+
         List<Integer> winningNumbers = getWinningNumbersFromUser();
         BonusNumber bonusNumber = getBonusNumberFromUser(winningNumbers);
     }

@@ -10,16 +10,15 @@ public class LottoGenerator {
 
     public LottoGenerator(PurchaseMoney money) {
         this.lottoCount = money.getAmount() / 1000;
-        generateLottos(lottoCount);
     }
 
     public int getLottoCount() {
         return lottoCount;
     }
 
-    public List<Lotto> generateLottos(int count) {
+    public List<Lotto> generateLottos() {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = generateLottoNumbers();
             Collections.sort(numbers);
             lottos.add(new Lotto(generateLottoNumbers()));
