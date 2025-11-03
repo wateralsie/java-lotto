@@ -5,26 +5,22 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream()
+                .map(LottoNumber::new)
+                .toList();
     }
 
-    public boolean hasNumber(int number) {
+    public boolean hasNumber(LottoNumber number) {
         return numbers.contains(number);
-    }
-
-    @Override
-    public String toString() {
-        return numbers.toString();
     }
 
     private void validate(List<Integer> numbers) {
         validateNumbersCount(numbers);
         validateDuplicateNumbers(numbers);
-        validateInRange(numbers);
     }
 
     private void validateNumbersCount(List<Integer> numbers) {
@@ -42,11 +38,11 @@ public class Lotto {
         }
     }
 
-    private void validateInRange(List<Integer> numbers) {
-        for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 값으로 입력해주세요.");
-            }
-        }
+    @Override
+    public String toString() {
+        return numbers.stream()
+                .map(LottoNumber::getValue)
+                .toList()
+                .toString();
     }
 }
