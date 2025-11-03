@@ -17,7 +17,7 @@ public class LottoSession {
     public String getResult() {
         LottoSessionResult result = calculateResult();
         double profitRate = result.calculateProfitRate(purchaseMoney);
-        return "";
+        return ResultFormatter.formatWinningStatistics(result, profitRate);
     }
 
     public LottoSessionResult calculateResult() {

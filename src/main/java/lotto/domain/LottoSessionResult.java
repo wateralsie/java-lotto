@@ -21,6 +21,10 @@ public class LottoSessionResult {
         result.put(rank, result.get(rank) + 1);
     }
 
+    public int getCountOfRank(WinningRank rank) {
+        return result.get(rank);
+    }
+
     public double calculateProfitRate(PurchaseMoney money) {
         long profit = calculateProfit();
         return (double) profit / money.getAmount() * 100;

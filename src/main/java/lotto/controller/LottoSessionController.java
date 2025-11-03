@@ -8,12 +8,15 @@ import lotto.domain.PurchaseMoney;
 import lotto.domain.ResultFormatter;
 import lotto.domain.WinningLottoNumbers;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoSessionController {
     private final InputView inputView;
+    private final OutputView outputView;
 
-    public LottoSessionController(InputView inputView) {
+    public LottoSessionController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void run() {
@@ -31,6 +34,8 @@ public class LottoSessionController {
         WinningLottoNumbers winningLottoNumbers = createWinningLottoNumbers(winningNumbers, bonusNumber);
 
         LottoSession lottoSession = new LottoSession(money, winningLottoNumbers, lottos);
+        System.out.println();
+        System.out.println("당첨 통계\n---");
         System.out.println(lottoSession.getResult());
     }
 
