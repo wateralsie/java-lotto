@@ -1,11 +1,11 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.PurchaseMoney;
 import lotto.domain.ResultFormatter;
+import lotto.domain.WinningLottoNumbers;
 import lotto.view.InputView;
 
 public class LottoSessionController {
@@ -26,7 +26,8 @@ public class LottoSessionController {
         System.out.println();
 
         List<Integer> winningNumbers = getWinningNumbersFromUser();
-        BonusNumber bonusNumber = getBonusNumberFromUser(winningNumbers);
+        int bonusNumber = getBonusNumberFromUser();
+        WinningLottoNumbers winningLottoNumbers = createWinningLottoNumbers(winningNumbers, bonusNumber);
     }
 
     private PurchaseMoney getPurchaseMoneyFromUser() {
@@ -46,12 +47,16 @@ public class LottoSessionController {
         }
     }
 
-    private BonusNumber getBonusNumberFromUser(List<Integer> winningNumbers) {
+    private int getBonusNumberFromUser() {
+        return inputView.readBonusNumber();
+    }
+
+    private WinningLottoNumbers createWinningLottoNumbers(List<Integer> winningNumbers, int bonusNumber) {
         try {
-            int bonusNumber = inputView.readBonusNumber();
-            return new BonusNumber(bonusNumber, winningNumbers);
+            return new WinningLottoNumbers(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
-            return getBonusNumberFromUser(winningNumbers);
+            return createWinningLottoNumbers(winningNumbers, getBonusNumberFromUser());
         }
     }
+
 }
