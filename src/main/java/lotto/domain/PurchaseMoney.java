@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.constants.ErrorMessage;
+import lotto.constants.LottoConstant;
+
 public class PurchaseMoney {
     private final int amount;
 
@@ -18,14 +21,14 @@ public class PurchaseMoney {
     }
 
     private void validateNoChange(int amount) {
-        if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위로 입력해야 합니다.");
+        if (amount % LottoConstant.LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_UNIT);
         }
     }
 
     private void validateIsZero(int amount) {
         if (amount == 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액을 지불해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_MONEY_IS_ZERO);
         }
     }
 }

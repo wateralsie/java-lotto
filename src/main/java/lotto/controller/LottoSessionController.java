@@ -24,19 +24,14 @@ public class LottoSessionController {
 
         LottoGenerator lottoGenerator = new LottoGenerator(money);
         List<Lotto> lottos = lottoGenerator.generateLottos();
-        System.out.println();
-        System.out.printf("%d개를 구매했습니다.\n", lottos.size());
-        System.out.println(ResultFormatter.formatLottoInfo(lottos));
-        System.out.println();
+        outputView.printLottoInfo(lottoGenerator.getLottoCount(), ResultFormatter.formatLottoInfo(lottos));
 
         List<Integer> winningNumbers = getWinningNumbersFromUser();
         int bonusNumber = getBonusNumberFromUser();
         WinningLottoNumbers winningLottoNumbers = createWinningLottoNumbers(winningNumbers, bonusNumber);
 
         LottoSession lottoSession = new LottoSession(money, winningLottoNumbers, lottos);
-        System.out.println();
-        System.out.println("당첨 통계\n---");
-        System.out.println(lottoSession.getResult());
+        outputView.printWinningStatistics(lottoSession.getResult());
     }
 
     private PurchaseMoney getPurchaseMoneyFromUser() {

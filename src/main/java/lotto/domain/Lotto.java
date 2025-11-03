@@ -3,6 +3,8 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.constants.ErrorMessage;
+import lotto.constants.LottoConstant;
 
 public class Lotto {
     private final List<LottoNumber> numbers;
@@ -24,8 +26,8 @@ public class Lotto {
     }
 
     private void validateNumbersCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LottoConstant.LOTTO_NUMBERS_COUNT) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS_COUNT);
         }
     }
 
@@ -33,7 +35,7 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (Integer number : numbers) {
             if (!uniqueNumbers.add(number)) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBERS);
             }
         }
     }

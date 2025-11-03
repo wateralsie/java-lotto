@@ -3,11 +3,13 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.constants.LottoConstant;
+import lotto.constants.LottoMessage;
 import lotto.util.NumberValidator;
 
 public class InputView {
     public int readPurchaseMoneyAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(LottoMessage.PURCHASE_MONEY_ENTER_PROMPT);
         String money = Console.readLine();
         NumberValidator.validate(money);
 
@@ -15,8 +17,8 @@ public class InputView {
     }
 
     public List<Integer> readWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String[] numbers = Console.readLine().split(",");
+        System.out.println(LottoMessage.WINNING_NUMBERS_ENTER_PROMPT);
+        String[] numbers = Console.readLine().split(LottoConstant.LOTTO_NUMBER_SEPARATOR);
         NumberValidator.validate(numbers);
 
         return Arrays.stream(numbers)
@@ -25,7 +27,7 @@ public class InputView {
     }
 
     public int readBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(LottoMessage.BONUS_NUMBER_ENTER_PROMPT);
         String number = Console.readLine();
         NumberValidator.validate(number);
 

@@ -4,12 +4,13 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.constants.LottoConstant;
 
 public class LottoGenerator {
     private final int lottoCount;
 
     public LottoGenerator(PurchaseMoney money) {
-        this.lottoCount = money.getAmount() / 1000;
+        this.lottoCount = money.getAmount() / LottoConstant.LOTTO_PRICE;
     }
 
     public int getLottoCount() {
@@ -27,6 +28,6 @@ public class LottoGenerator {
     }
 
     public List<Integer> generateLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(LottoConstant.MIN_LOTTO_NUMBER, LottoConstant.MAX_LOTTO_NUMBER, LottoConstant.LOTTO_NUMBERS_COUNT);
     }
 }
