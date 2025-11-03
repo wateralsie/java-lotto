@@ -19,6 +19,10 @@ public enum WinningRank {
         return numbersMatchCount;
     }
 
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
+
     public static WinningRank decideBy(int numbersMatchCount, boolean hasBonusNumber) {
         if (numbersMatchCount == FIRST.numbersMatchCount) {
             return WinningRank.FIRST;
