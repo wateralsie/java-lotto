@@ -16,14 +16,22 @@ public class WinningLottoNumbers {
     }
 
     public Optional<WinningRank> compareWith(Lotto lotto) {
+        int matchCount = matchNumbers(lotto);
+        boolean hasBonusNumber = lotto.hasNumber(bonusNumber);
+        if (matchCount < WinningRank.FIFTH.getNumbersMatchCount()) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(WinningRank.decideBy(matchCount, hasBonusNumber));
+    }
+
+    private int matchNumbers(Lotto lotto) {
         int matchCount = 0;
         for (LottoNumber winningNumber: winningNumbers) {
             if (lotto.hasNumber(winningNumber)) {
                 matchCount++;
             }
         }
-        boolean hasBonusNumber = lotto.hasNumber(bonusNumber);
-        return Optional.ofNullable(WinningRank.decideBy(matchCount, hasBonusNumber));
+        return matchCount;
     }
 
     private void validate(List<Integer> winningNumbers, int bonusNumber) {
