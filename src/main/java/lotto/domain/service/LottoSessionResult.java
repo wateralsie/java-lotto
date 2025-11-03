@@ -1,8 +1,10 @@
-package lotto.domain;
+package lotto.domain.service;
 
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.domain.model.PurchaseMoney;
+import lotto.domain.model.WinningRank;
 
 public class LottoSessionResult {
     private final Map<WinningRank, Integer> result;

@@ -1,8 +1,11 @@
-package lotto.domain;
+package lotto.util;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.constants.LottoMessage;
+import lotto.domain.model.Lotto;
+import lotto.domain.model.WinningRank;
+import lotto.domain.service.LottoSessionResult;
 
 public class ResultFormatter {
     public static String formatLottoInfo(List<Lotto> lottos) {

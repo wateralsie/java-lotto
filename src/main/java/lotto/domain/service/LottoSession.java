@@ -1,7 +1,12 @@
-package lotto.domain;
+package lotto.domain.service;
 
 import java.util.List;
 import java.util.Optional;
+import lotto.util.ResultFormatter;
+import lotto.domain.model.Lotto;
+import lotto.domain.model.PurchaseMoney;
+import lotto.domain.model.WinningLottoNumbers;
+import lotto.domain.model.WinningRank;
 
 public class LottoSession {
     private final PurchaseMoney purchaseMoney;

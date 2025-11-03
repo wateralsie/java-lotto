@@ -1,10 +1,12 @@
-package lotto.domain;
+package lotto.domain.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.constants.LottoConstant;
+import lotto.domain.model.Lotto;
+import lotto.domain.model.PurchaseMoney;
 
 public class LottoGenerator {
     private final int lottoCount;
