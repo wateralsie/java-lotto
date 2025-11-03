@@ -11,7 +11,7 @@ public class LottoSessionResult {
         this.result = result;
     }
 
-    public static LottoSessionResult create() {
+    public static LottoSessionResult initiallyCreate() {
         Map<WinningRank, Integer> result = Arrays.stream(WinningRank.values())
                 .collect(Collectors.toMap(rank -> rank, rank -> 0));
         return new LottoSessionResult(result);

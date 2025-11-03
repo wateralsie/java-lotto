@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
+import lotto.domain.LottoSession;
 import lotto.domain.PurchaseMoney;
 import lotto.domain.ResultFormatter;
 import lotto.domain.WinningLottoNumbers;
@@ -28,6 +29,9 @@ public class LottoSessionController {
         List<Integer> winningNumbers = getWinningNumbersFromUser();
         int bonusNumber = getBonusNumberFromUser();
         WinningLottoNumbers winningLottoNumbers = createWinningLottoNumbers(winningNumbers, bonusNumber);
+
+        LottoSession lottoSession = new LottoSession(money, winningLottoNumbers, lottos);
+        System.out.println(lottoSession.getResult());
     }
 
     private PurchaseMoney getPurchaseMoneyFromUser() {
