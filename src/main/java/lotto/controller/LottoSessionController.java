@@ -39,6 +39,7 @@ public class LottoSessionController {
             int amount = inputView.readPurchaseMoneyAmount();
             return new PurchaseMoney(amount);
         } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
             return getPurchaseMoneyFromUser();
         }
     }
@@ -47,6 +48,7 @@ public class LottoSessionController {
         try {
             return inputView.readWinningNumbers();
         } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
             return getWinningNumbersFromUser();
         }
     }
@@ -59,6 +61,7 @@ public class LottoSessionController {
         try {
             return new WinningLottoNumbers(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
             return createWinningLottoNumbers(winningNumbers, getBonusNumberFromUser());
         }
     }
